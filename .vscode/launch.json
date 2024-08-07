@@ -6,7 +6,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch",
+      "name": "only target file",
+      "type": "go",
+      "request": "launch",
+      // Supported modes: debug/test/exec/auto
+      // https://github.com/golang/vscode-go/blob/master/docs/debugging.md#launch
+      "mode": "debug",
+      "program": "${file}",
+      "env": {},
+      "args": []
+    },
+    {
+      "name": "target directory",
       "type": "go",
       "request": "launch",
       // Supported modes: debug/test/exec/auto
