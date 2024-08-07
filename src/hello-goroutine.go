@@ -1,6 +1,6 @@
 //go:build ignore
 
-// https://learn.microsoft.com/ja-jp/training/modules/go-concurrency/1-goroutines
+// - https://learn.microsoft.com/ja-jp/training/modules/go-concurrency/2-channels
 package main
 
 import (
@@ -9,15 +9,6 @@ import (
 	"time"
 )
 
-func checkAPI(api string) {
-    _, err := http.Get(api)
-    if err != nil {
-        fmt.Printf("ERROR: %s is down!\n", api)
-        return
-    }
-
-    fmt.Printf("SUCCESS: %s is up and running!\n", api)
-}
 func main() {
     start := time.Now()
 
@@ -30,10 +21,26 @@ func main() {
         "https://graph.microsoft.com",
     }
 
-		for _, api := range apis {
-				go checkAPI(api)
-		}
+    ch := make(chan string)
+
+    for _, api := range apis {
+        go checkAPI(api, ch)
+    }
+
+    for i := 0; i < len(apis); i++ {
+        fmt.Print(<-ch)
+    }
 
     elapsed := time.Since(start)
     fmt.Printf("Done! It took %v seconds!\n", elapsed.Seconds())
+}
+
+func checkAPI(api string, ch chan string) {
+    _, err := http.Get(api)
+    if err != nil {
+        ch <- fmt.Sprintf("ERROR: %s is down!\n", api)
+        return
+    }
+
+    ch <- fmt.Sprintf("SUCCESS: %s is up and running!\n", api)
 }
