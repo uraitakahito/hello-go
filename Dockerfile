@@ -11,7 +11,6 @@ ARG dotfiles_repository="https://github.com/uraitakahito/dotfiles.git"
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -qq && \
-  apt-get upgrade -y -qq && \
   apt-get install -y -qq --no-install-recommends \
     ca-certificates \
     git && \
@@ -22,7 +21,6 @@ RUN apt-get update -qq && \
 # Install packages
 #
 RUN apt-get update -qq && \
-  apt-get upgrade -y -qq && \
   apt-get install -y -qq --no-install-recommends \
     # Basic
     iputils-ping \
@@ -41,7 +39,6 @@ RUN apt-get update -qq && \
 # https://github.com/eza-community/eza/blob/main/INSTALL.md
 #
 RUN apt-get update -qq && \
-  apt-get upgrade -y -qq && \
   apt-get install -y -qq --no-install-recommends \
     gpg \
     wget && \
