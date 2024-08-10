@@ -26,6 +26,26 @@
       "program": "${fileDirname}",
       "env": {},
       "args": []
+    },
+    {
+      "name": "test target directory",
+      "type": "go",
+      "request": "launch",
+      "mode": "test",
+      "program": "${fileDirname}",
+      "env": {},
+      "args": ["-test.v"],
+      "showLog": true
+    },
+    {
+      "name": "test root directory",
+      "type": "go",
+      "request": "launch",
+      "mode": "test",
+      "program": "${workspaceRoot}",
+      "env": {},
+      "args": ["-test.v"],
+      "showLog": true
     }
   ]
 }
