@@ -1,6 +1,6 @@
 # Debian 12
-# https://github.com/docker-library/golang/blob/539882fb23e90d31854a51a773accf8731cf0c9d/1.22/bookworm/Dockerfile
-FROM golang:1.22.5-bookworm
+# https://github.com/docker-library/golang/blob/bb910a38695cd38c2b668671a8c19c32c6334db3/1.23/bookworm/Dockerfile
+FROM golang:1.23.0-bookworm
 
 ARG user_name=developer
 ARG user_id
