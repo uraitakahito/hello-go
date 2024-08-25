@@ -86,6 +86,12 @@ RUN go install github.com/go-delve/delve/cmd/dlv@latest
 #
 RUN go install golang.org/x/tools/cmd/goimports@latest
 
+#
+# staticcheck
+# https://github.com/golang/vscode-go/blob/master/docs/settings.md#golinttool
+#
+RUN go install honnef.co/go/tools/cmd/staticcheck@latest
+
 WORKDIR /app
 
 ENTRYPOINT ["docker-entrypoint.sh"]
