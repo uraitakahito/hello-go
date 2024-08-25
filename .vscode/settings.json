@@ -11,6 +11,8 @@
     "ui.diagnostic.staticcheck": true,
     // https://staticcheck.dev/docs/checks/
     "analyses": {
+      "shadow": true,
+
       "SA1000": true,
       "SA1001": true,
       "SA1002": true,
