@@ -82,6 +82,11 @@ RUN cd /home/${user_name} && \
 #
 RUN go install github.com/go-delve/delve/cmd/dlv@latest
 
+#
+# goimports
+#
+RUN go install golang.org/x/tools/cmd/goimports@latest
+
 WORKDIR /app
 
 ENTRYPOINT ["docker-entrypoint.sh"]
