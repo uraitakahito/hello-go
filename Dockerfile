@@ -1,6 +1,6 @@
 # Debian 12
-# https://github.com/docker-library/golang/blob/539882fb23e90d31854a51a773accf8731cf0c9d/1.22/bookworm/Dockerfile
-FROM golang:1.22.5-bookworm
+# https://github.com/docker-library/golang/blob/bb910a38695cd38c2b668671a8c19c32c6334db3/1.23/bookworm/Dockerfile
+FROM golang:1.23.0-bookworm
 
 ARG user_name=developer
 ARG user_id
@@ -54,7 +54,6 @@ RUN apt-get update -qq && \
   rm -rf /var/lib/apt/lists/*
 
 COPY docker-entrypoint.sh /usr/local/bin/
-COPY zshrc-entrypoint-init.d /etc/zshrc-entrypoint-init.d
 
 RUN git config --system --add safe.directory /app
 
@@ -81,6 +80,17 @@ RUN cd /home/${user_name} && \
 # delve
 #
 RUN go install github.com/go-delve/delve/cmd/dlv@latest
+
+#
+# goimports
+#
+RUN go install golang.org/x/tools/cmd/goimports@latest
+
+#
+# staticcheck
+# https://github.com/golang/vscode-go/blob/master/docs/settings.md#golinttool
+#
+RUN go install honnef.co/go/tools/cmd/staticcheck@latest
 
 WORKDIR /app
 
