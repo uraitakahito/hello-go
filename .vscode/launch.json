@@ -17,17 +17,6 @@
       "args": []
     },
     {
-      "name": "target directory",
-      "type": "go",
-      "request": "launch",
-      // Supported modes: debug/test/exec/auto
-      // https://github.com/golang/vscode-go/blob/master/docs/debugging.md#launch
-      "mode": "debug",
-      "program": "${fileDirname}",
-      "env": {},
-      "args": []
-    },
-    {
       "name": "test target directory",
       "type": "go",
       "request": "launch",
@@ -37,15 +26,5 @@
       "args": ["-test.v"],
       "showLog": true
     },
-    {
-      "name": "test root directory",
-      "type": "go",
-      "request": "launch",
-      "mode": "test",
-      "program": "${workspaceRoot}",
-      "env": {},
-      "args": ["-test.v"],
-      "showLog": true
-    }
   ]
 }
