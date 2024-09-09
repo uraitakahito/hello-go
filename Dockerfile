@@ -52,12 +52,14 @@ RUN USERNAME=${user_name} \
 
 #
 # Install Go
+#   https://github.com/devcontainers/features/blob/main/src/go/install.sh
 #
 # see also:
 #   https://github.com/devcontainers/features/blob/28846e52809dfd65c0569fb58eae55afcb5f366a/src/go/install.sh#L167-L170
 ENV PATH=$PATH:/usr/local/go/bin
 
-RUN USERNAME=${user_name} \
+RUN INSTALL_GO_TOOLS=true \
+    USERNAME=${user_name} \
     VERSION=${go_version} \
       /usr/src/features/src/go/install.sh
 
@@ -71,20 +73,9 @@ RUN cd /home/${user_name} && \
   dotfiles/install.sh
 
 #
-# delve
-#
-RUN go install github.com/go-delve/delve/cmd/dlv@latest
-
-#
 # goimports
 #
 RUN go install golang.org/x/tools/cmd/goimports@latest
-
-#
-# staticcheck
-# https://github.com/golang/vscode-go/blob/master/docs/settings.md#golinttool
-#
-RUN go install honnef.co/go/tools/cmd/staticcheck@latest
 
 WORKDIR /app
 
